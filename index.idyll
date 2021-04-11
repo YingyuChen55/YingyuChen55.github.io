@@ -1,0 +1,102 @@
+[meta title:"IS445 Data Viz Page" description:"Idyll in week 11" /]
+
+[Header
+  fullWidth:true
+  title:"IS445 Spring 2021"
+  subtitle:"This is homework 10"
+  author:"Yingyu Chen"
+  authorLink:"https://idyll-lang.org"
+  date:"Apr 11, 2021"
+  background:"#222222"
+  color:"#ffffff"
+   /]
+
+[var name:"x" value:0 /]
+
+## Homework 10 Introduction
+
+This week we are using idyll and Vega-light to host page with GitHub.io
+My work is written below.
+
+
+
+## Idyll's built-ins
+
+###Float
+
+Here I am using float to make two snoopys standing by each other.
+
+[Float position:"right"]
+  [img 
+     src:'https://www.peanuts.com/sites/default/files/sn-color.jpg' 
+     style:`{height:‘200px’}` /]
+[/Float]
+
+[Float position:"left"]
+  [img 
+     src:'https://i5.walmartimages.com/asr/23dd374b-c1ee-405a-8dac-f0a2195160ff.d5ed1a4e90e339d34152dc267dbd71b3.jpeg?odnWidth=1000&odnHeight=1000&odnBg=ffffff' 
+     style:`{height:‘100px’}` /]
+[/Float]
+
+
+###Button
+
+Ready for some fun facts about snoopy? [action onClick:`alert('GOGOGOGO!')`]Yes![/action]
+
+
+
+###Scroller
+
+[Scroller currentStep:scrollerIndex]
+  [Graphic style:`{padding: 50}`]
+  [img 
+    src:'https://www.peanuts.com/sites/default/files/sn-color.jpg' 
+    style:`{height:‘500px’}` 
+   /]
+  [/Graphic]
+
+  [Step]## Do you know?[/Step]
+  [Step]## Snoopy is not your average beagle. He is a book lover and a book writer[/Step]
+  [Step]## He is a collector of fine art and a root beer connoisseur.[/Step]
+  [Step]## Snoopy reads "War and Peace" at the rate of one word a day.[/Step]
+  [Step]## Snoopy never forgets when it’s time to eat, and often celebrates the occasion with a happy dance.[/Step]
+  [Step]## As the World Famous Author, Snoopy is forever trying to write the Great American Novel.   [/Step]
+  [Step]## Snoopy loves to fantasize about being various characters, especially the World War I Flying Ace.[/Step]
+
+
+[/Scroller]
+
+
+
+### Chart
+
+Here I am testing with using dataset in idyll. I use the simplest dataset(GDP dataset)over the week to see and test the functionality of built-in chart.
+
+Here is the table of the data.
+
+[data name:"GDP" source:"GDP.csv" /]
+[Table data:GDP /]
+
+Here is a bar chart of the GDP dataset.
+
+[Chart type:"bar" data:GDP domain:`null` range:`null` x:'Date' y:'GDP' /]
+
+No good, Vega lite on the way.
+
+
+## Vega-lite plot
+
+[data name:"building" source:"building.csv" /]
+
+The dataset I am using for the Vega-lite plot is the building inventory dataset. The data is measuring building inventory in years, total floors, Square footage, etc. I am trying to show the relationship between total floors in congress Dist with the mark of circle. It is the first time I use circle mark. I use the quantitative data of total floor as x and nominal data of congress list as y. I think the circle mark is a fun way to see the visualization and different opacity can present different amounts.
+
+[IdyllVegaLite data:building spec:`{
+  mark: "circle",
+  width:600,
+  height:400,
+  encoding: {
+    x: {field:"Total Floors", type:"quantitative"},
+	y: {field:"Congress Dist", type:"nominal"}
+  }
+}` 
+/]
