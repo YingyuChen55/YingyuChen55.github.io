@@ -1,0 +1,13 @@
+name: test_environment
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pandas
+  - matplotlib.pyplot
+  - numpy
+  - bqplot
+  - traitlets
+  - ipywidgets
+  - matplotlib
+  - PIL.Image
